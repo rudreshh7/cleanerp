@@ -15,6 +15,13 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { DeleteConfirmationDialog } from "@/components/ui/delete-confirmation-dialog";
+import {
   Plus,
   Search,
   Filter,
@@ -22,6 +29,8 @@ import {
   Mail,
   Users,
   Loader2,
+  Trash2,
+  Edit,
 } from "lucide-react";
 
 interface Employee {
@@ -60,6 +69,13 @@ export default function EmployeesPage() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  // Delete state
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [employeeToDelete, setEmployeeToDelete] = useState<Employee | null>(
+    null
+  );
+  const [deleting, setDeleting] = useState(false);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -159,6 +175,36 @@ export default function EmployeesPage() {
       salary: "",
       hireDate: "",
     });
+  };
+
+  const handleDeleteEmployee = (employee: Employee) => {
+    setEmployeeToDelete(employee);
+    setDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!employeeToDelete) return;
+
+    setDeleting(true);
+    try {
+      const response = await fetch(`/api/employees/${employeeToDelete.id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setEmployees(employees.filter((emp) => emp.id !== employeeToDelete.id));
+        setDeleteDialogOpen(false);
+        setEmployeeToDelete(null);
+      } else {
+        const error = await response.json();
+        alert(`Error: ${error.error || "Failed to delete employee"}`);
+      }
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+      alert("Failed to delete employee");
+    } finally {
+      setDeleting(false);
+    }
   };
 
   const filteredEmployees = employees.filter((employee) => {
@@ -402,9 +448,26 @@ export default function EmployeesPage() {
                       </div>
                     </div>
 
-                    <Button variant="ghost" size="icon">
-                      <MoreVertical className="h-4 w-4" />
-                    </Button>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                          <MoreVertical className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <Edit className="h-4 w-4 mr-2" />
+                          Edit Employee
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          className="cursor-pointer text-red-600 focus:text-red-600"
+                          onClick={() => handleDeleteEmployee(employee)}
+                        >
+                          <Trash2 className="h-4 w-4 mr-2" />
+                          Delete Employee
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
                 </div>
               </CardContent>
@@ -427,6 +490,20 @@ export default function EmployeesPage() {
             </CardContent>
           </Card>
         )}
+
+        {/* Delete Confirmation Dialog */}
+        <DeleteConfirmationDialog
+          open={deleteDialogOpen}
+          onOpenChange={setDeleteDialogOpen}
+          onConfirm={confirmDelete}
+          title="Delete Employee"
+          description={
+            employeeToDelete
+              ? `Are you sure you want to delete ${employeeToDelete.name}? This action cannot be undone.`
+              : "Are you sure you want to delete this employee? This action cannot be undone."
+          }
+          loading={deleting}
+        />
       </div>
     </ERPLayout>
   );
