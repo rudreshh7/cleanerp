@@ -119,7 +119,7 @@ export function Footer() {
                   <div className="w-8 h-8 bg-[#F8FAFC] border border-[#E3EAFC] rounded-lg flex items-center justify-center mr-3 group-hover:bg-[#E3EAFC] group-hover:border-[#0B82F0]/20 transition-colors">
                     <MapPin className="h-4 w-4" />
                   </div>
-                  <span className="text-sm font-medium">San Francisco, CA</span>
+                  <span className="text-sm font-medium">Bengaluru, In</span>
                 </div>
               </div>
             </motion.div>
