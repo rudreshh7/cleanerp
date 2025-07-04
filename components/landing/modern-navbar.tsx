@@ -67,7 +67,7 @@ export function ModernNavbar() {
           >
             <Link href="/" className="flex items-center space-x-3 group">
               <Image
-                src="/rudrerp.svg"
+                src="/rudrERP.svg"
                 alt="rudrERP Logo"
                 width={120}
                 height={40}
@@ -75,7 +75,7 @@ export function ModernNavbar() {
               />
               <span className="text-2xl font-bold">
                 <span className="bg-gradient-to-r from-[#F26B0A] to-[#FF5A1A] bg-clip-text text-transparent">
-                  ERP
+                  cleanERP
                 </span>
               </span>
             </Link>
