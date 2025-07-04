@@ -83,21 +83,6 @@ const getPriorityColor = (priority: string) => {
   }
 };
 
-const getPriorityIcon = (priority: string) => {
-  switch (priority) {
-    case "URGENT":
-      return "🔴";
-    case "HIGH":
-      return "🟠";
-    case "MEDIUM":
-      return "🟡";
-    case "LOW":
-      return "🟢";
-    default:
-      return "⚪";
-  }
-};
-
 export default function TasksPage() {
   const [searchTerm, setSearchTerm] = useState("");
 

@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -12,7 +12,8 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const employeeId = parseInt(params.id);
+    const { id } = await params;
+    const employeeId = parseInt(id);
     if (isNaN(employeeId)) {
       return NextResponse.json(
         { error: "Invalid employee ID" },
@@ -49,7 +50,7 @@ export async function DELETE(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -57,7 +58,8 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const employeeId = parseInt(params.id);
+    const { id } = await params;
+    const employeeId = parseInt(id);
     if (isNaN(employeeId)) {
       return NextResponse.json(
         { error: "Invalid employee ID" },

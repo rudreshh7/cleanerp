@@ -169,9 +169,8 @@ export function Footer() {
           <div className="pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center">
               <span className="text-[#6B7280] text-sm font-medium flex items-center">
-                © 2024 rudrERP. Made with{" "}
+                © 2025 cleanERP. Brought to u by rudr{" "}
                 <Heart className="h-4 w-4 text-[#EA4335] mx-1.5 animate-pulse" />
-                for growing businesses.
               </span>
             </div>
 

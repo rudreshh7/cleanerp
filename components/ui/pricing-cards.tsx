@@ -44,7 +44,7 @@ function Pricing() {
                 <div className="flex flex-col gap-8 justify-start">
                   <p className="flex flex-row items-center gap-2 text-xl">
                     <span className="text-4xl font-bold text-[#1F2937]">
-                      $49
+                      ₹0
                     </span>
                     <span className="text-sm text-[#6B7280]">/ month</span>
                   </p>
@@ -115,7 +115,8 @@ function Pricing() {
                 <div className="flex flex-col gap-8 justify-start">
                   <p className="flex flex-row items-center gap-2 text-xl">
                     <span className="text-4xl font-bold text-[#1F2937]">
-                      $99
+                      {" "}
+                      ₹2000
                     </span>
                     <span className="text-sm text-[#6B7280]">/ month</span>
                   </p>

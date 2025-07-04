@@ -3,9 +3,24 @@ import { GlowCard } from "@/components/ui/spotlight-card";
 export function Default() {
   return (
     <div className="w-screen h-screen flex flex-row items-center justify-center gap-10 custom-cursor">
-      <GlowCard />
-      <GlowCard />
-      <GlowCard />
+      <GlowCard glowColor="blue">
+        <div className="text-white p-4">
+          <h3 className="text-xl font-bold mb-2">Card 1</h3>
+          <p className="text-gray-300">Spotlight effect demo</p>
+        </div>
+      </GlowCard>
+      <GlowCard glowColor="purple">
+        <div className="text-white p-4">
+          <h3 className="text-xl font-bold mb-2">Card 2</h3>
+          <p className="text-gray-300">Interactive glow card</p>
+        </div>
+      </GlowCard>
+      <GlowCard glowColor="green">
+        <div className="text-white p-4">
+          <h3 className="text-xl font-bold mb-2">Card 3</h3>
+          <p className="text-gray-300">Beautiful lighting</p>
+        </div>
+      </GlowCard>
     </div>
   );
 }

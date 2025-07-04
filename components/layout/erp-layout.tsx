@@ -100,7 +100,7 @@ export function ERPLayout({ children }: ERPLayoutProps) {
       <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
         <div className="flex flex-col flex-grow bg-white border-r border-gray-200 pt-5 pb-4 overflow-y-auto">
           <div className="flex items-center flex-shrink-0 px-4">
-            <h1 className="text-xl font-bold text-gray-900">ERP System</h1>
+            <h1 className="text-xl font-bold text-gray-900">cleanERP</h1>
           </div>
           <nav className="mt-8 flex-1 flex flex-col divide-y divide-gray-200 overflow-y-auto">
             <div className="space-y-1 px-3">
